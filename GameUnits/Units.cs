@@ -26,4 +26,22 @@ namespace GameUnits
         {
         }
     }
+    public class MilitaryUnit : Unit
+    {
+        public int AttackPower { get; }
+        public int XP { get; private set; }
+        public override int Health => base.Health + XP;
+        public override float Cost => AttackPower + XP;
+        public MilitaryUnit(int attackPower, int xp, int movement, int health) : base(movement, health)
+        {
+            AttackPower = attackPower;
+            XP = xp;
+        }
+
+        public void Attack(Unit u)
+        {
+            XP++;
+            Health--;
+        }
+    }
 }
