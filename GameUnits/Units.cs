@@ -80,9 +80,8 @@ namespace GameUnits
         //ToString method
         public override string ToString()
         {
-            return base.ToString() + " AP=" + attackpower;
+            return $"{base.ToString()} AP={AttackPower} XP={XP}";
         }
-
     }
 
     /// <summary>
