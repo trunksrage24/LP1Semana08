@@ -19,4 +19,11 @@ namespace GameUnits
             Console.WriteLine("Movement: " + movement);
         }
     }
+    public class SettlerUnit : Unit
+    {
+        public override float Cost => 5.0f;
+        public SettlerUnit() : base(1, 2)
+        {
+        }
+    }
 }
