@@ -12,8 +12,8 @@ namespace GameUnits
                 new MilitaryUnit(4, 5, 3),
                 new SettlerUnit(),
                 new SpyUnit(),
-                new SpyUnit()
-            };
+                new SpyUnit();
+        }
 
             (units[0] as MilitaryUnit).Attack(units[4]);
             (units[0] as MilitaryUnit).Attack(units[2]);
