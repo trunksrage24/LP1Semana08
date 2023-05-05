@@ -54,7 +54,7 @@ namespace GameUnits
     /// class MilitaryUnit, defines properties based on XPUnit properties plus
     /// specific properties for this type
     /// </summary>
-    public abstract class MilitaryUnit : XPUnit
+    public class MilitaryUnit : XPUnit
     {
         //variables
         public int AttackPower { get; }
