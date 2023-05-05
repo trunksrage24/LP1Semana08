@@ -8,13 +8,15 @@ namespace GameUnits
     /// </summary>
     public abstract class Unit
     {
-        //variables
+        //variable
         public int movement;
+    
+        //setters and getters
         public virtual int Health { get; set; }
         public abstract float Cost { get; }
 
-        //constructor Unit
-        public Unit (int movement, int health)
+        //constructor rUnit
+        public Unit(int movement, int health)
         {
             this.movement = movement;
             Health = health;
@@ -49,55 +51,75 @@ namespace GameUnits
     }
 
     /// <summary>
-    /// class MilitaryUnit, defines properties based on Unit properties plus
+    /// class MilitaryUnit, defines properties based on XPUnit properties plus
     /// specific properties for this type
     /// </summary>
-    public class MilitaryUnit : Unit
+    public abstract class MilitaryUnit : XPUnit
     {
         //variables
         public int AttackPower { get; }
-        public int XP { get; private set; }
+        
+        //setters and getters
         public override int Health => base.Health + XP;
         public override float Cost => AttackPower + XP;
-
-        //constructor MilitaryUnit, using values from Unit constructor
+        
+        /*constructor MilitaryUnit, using values from Unit constructor plus 
+        more properties*/
         public MilitaryUnit(int movement, int health, int attackPower) : base(movement, health)
         {
             AttackPower = attackPower;
-            XP = 0;
         }
-
+        
         //Attack method
         public void Attack(Unit u)
         {
             XP++;
             u.Health--;
         }
-
+        
         //ToString method
         public override string ToString()
         {
-            return base.ToString() + "AP=" + AttackPower + " XP=" + XP;
+            return base.ToString() + " AP=" + attackpower;
         }
+
     }
+
+    /// <summary>
+    /// class XPUnit, defines properties based on Unit properties plus
+    /// specific properties for this type
+    /// </summary>
     public abstract class XPUnit : Unit
     {
+        //setters and getters
         public abstract int XP { get; protected set; }
+        
+        //constructor XPUnit, using values from Unit constructor
         public XPUnit() : base (movement, health)
         {
             XP = 0;
         }
+    
+        //ToString method
         public override string ToString()
         {
-            return base.ToString() + " XP=" + XP;
+            return base.ToString() + " XP = " + XP;
         }
-    } 
+    }
+
+    /// <summary>
+    /// class SpyUnit, defines properties based on XPUnit properties plus
+    /// specific properties for this type 
+    /// </summary>
     public class SpyUnit : XPUnit
     {
+        //variables
         protected override float Cost => 12.5f;
+        //setters and getters
         private int movement { get; set; } = 8;
         private int health { get; set; } = 2;
 
+        //GetSecretInfo method
         public void GetSecretInfo(Unit  u)
         {
             if (Unit == SpyUnit)
