@@ -92,5 +92,27 @@ namespace GameUnits
             return base.ToString() + " XP=" + XP;
         }
     } 
+    public class SpyUnit : XPUnit
+    {
+        protected override float Cost => 12.5f;
+        private int movement { get; set; } = 8;
+        private int health { get; set; } = 2;
+
+        public void GetSecretInfo(Unit  u)
+        {
+            if (Unit == SpyUnit)
+            {
+                Cost += 3;
+            }
+            if (Unit == MilitaryUnit)
+            {
+                u.Cost += 2;
+            }
+            else
+            {
+                u.Cost += 1;
+            }
+        }
+    }
 
 }
