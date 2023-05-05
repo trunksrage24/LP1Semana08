@@ -111,7 +111,7 @@ namespace GameUnits
     /// class SpyUnit, defines properties based on XPUnit properties plus
     /// specific properties for this type 
     /// </summary>
-    public class SpyUnit : XPUnit
+    public abstract class SpyUnit : XPUnit
     {
         //variables
         protected override float Cost => 12.5f;
