@@ -25,6 +25,12 @@ namespace GameUnits
         {
             Console.WriteLine("Movement: " + movement);
         }
+        
+        //ToString method
+        public override string ToString()
+        {
+            return GetType().Name + ": HP=" + Health + " COST=" + Cost.ToString("0") + " ";
+        }
     }
 
     /// <summary>
@@ -48,7 +54,6 @@ namespace GameUnits
     /// </summary>
     public class MilitaryUnit : Unit
     {
-        
         //variables
         public int AttackPower { get; }
         public int XP { get; private set; }
@@ -56,17 +61,23 @@ namespace GameUnits
         public override float Cost => AttackPower + XP;
         
         //constructor MilitaryUnit, using values from Unit constructor
-        public MilitaryUnit(int attackPower, int xp, int movement, int health) : base(movement, health)
+        public MilitaryUnit(int movement, int health, int attackPower) : base(movement, health)
         {
             AttackPower = attackPower;
-            XP = xp;
+            XP = 0;
         }
 
         //Attack method
         public void Attack(Unit u)
         {
             XP++;
-            Health--;
+            u.Health--;
+        }
+
+       //ToString method
+        public override string ToString()
+        {
+            return base.ToString() + "AP=" + AttackPower + " XP=" + XP;
         }
     }
 }
