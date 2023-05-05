@@ -92,10 +92,10 @@ namespace GameUnits
     public abstract class XPUnit : Unit
     {
         //setters and getters
-        public abstract int XP { get; protected set; }
+        public int XP { get; protected set; }
         
         //constructor XPUnit, using values from Unit constructor
-        public XPUnit() : base (movement, health)
+        public XPUnit(int movement, int health) : base (movement, health)
         {
             XP = 0;
         }
@@ -111,28 +111,30 @@ namespace GameUnits
     /// class SpyUnit, defines properties based on XPUnit properties plus
     /// specific properties for this type 
     /// </summary>
-    public abstract class SpyUnit : XPUnit
+    public class SpyUnit : XPUnit
     {
         //variables
-        protected override float Cost => 12.5f;
-        //setters and getters
-        private int movement { get; set; } = 8;
-        private int health { get; set; } = 2;
+        public override float Cost => 12.5f;
+        
+        //SpyUnit constructor, using values from Unit constructor
+        public SpyUnit() : base(8, 2)
+        {
+        }
 
         //GetSecretInfo method
-        public void GetSecretInfo(Unit  u)
+        public void GetSecretInfo(Unit unit)
         {
-            if (Unit == SpyUnit)
+            if (unit is SpyUnit)
             {
-                Cost += 3;
+                XP += 3;
             }
-            if (Unit == MilitaryUnit)
+            else if (unit is MilitaryUnit)
             {
-                u.Cost += 2;
+                XP += 2;
             }
             else
             {
-                u.Cost += 1;
+                XP += 1;
             }
         }
     }
