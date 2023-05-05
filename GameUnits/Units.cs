@@ -59,7 +59,7 @@ namespace GameUnits
         public int XP { get; private set; }
         public override int Health => base.Health + XP;
         public override float Cost => AttackPower + XP;
-        
+
         //constructor MilitaryUnit, using values from Unit constructor
         public MilitaryUnit(int movement, int health, int attackPower) : base(movement, health)
         {
@@ -74,10 +74,23 @@ namespace GameUnits
             u.Health--;
         }
 
-       //ToString method
+        //ToString method
         public override string ToString()
         {
             return base.ToString() + "AP=" + AttackPower + " XP=" + XP;
         }
     }
+    public abstract class XPUnit : Unit
+    {
+        public abstract int XP { get; protected set; }
+        public XPUnit() : base (movement, health)
+        {
+            XP = 0;
+        }
+        public override string ToString()
+        {
+            return base.ToString() + " XP=" + XP;
+        }
+    } 
+
 }
